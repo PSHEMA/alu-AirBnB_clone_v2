@@ -1,12 +1,12 @@
 #!/usr/bin/python3
 """ State Module for HBNB project """
+import os
 
 from models.base_model import BaseModel, Base
 from sqlalchemy import Column, String
 from sqlalchemy.orm import relationship
 from models.city import City
 import models
-import os
 
 
 class State(BaseModel, Base):
@@ -20,7 +20,6 @@ class State(BaseModel, Base):
                               cascade='all, delete-orphan')
 
     else:
-        @property
         def cities(self):
             """ Returns the list of City instances with state_id
             equals to the current State.id. """
