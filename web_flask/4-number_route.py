@@ -1,45 +1,40 @@
 #!/usr/bin/python3
-"""Starts a Flask web application"""
-
+""" Script that starts a Flask web application. """
 from flask import Flask
-
 app = Flask(__name__)
 
 
 @app.route('/', strict_slashes=False)
-def hello():
-    """Prints Hello HBNB!"""
+def hello_hbnb():
+    """ Function that displays "Hello HBNB!" """
     return 'Hello HBNB!'
 
 
 @app.route('/hbnb', strict_slashes=False)
 def hbnb():
-    """Prints HBNB!"""
+    """ Function that displays "HBNB" """
     return 'HBNB'
 
 
-app.route('/c/<text>', strict_slashes=False)
+@app.route('/c/<text>', strict_slashes=False)
+def c_is_fun(text):
+    """ Function that displays "C" followed
+    by the value of the text variable """
+    return 'C {}'.format(text.replace('_', ' '))
 
 
-def c(text):
-    """Prints <text>"""
-    return 'C ' + text.replace('_', ' ')
+@app.route('/python', strict_slashes=False)
+@app.route('/python/<text>', strict_slashes=False)
+def python_is_cool(text='is cool'):
+    """ Function that displays "Python" followed
+    by the value of the text variable """
+    return 'Python {}'.format(text.replace('_', ' '))
 
 
-app.route('/python/', strict_slashes=False)
-app.route('/python/<text>', strict_slashes=False)
-
-
-def python(text='is cool'):
-    """Prints <text>"""
-    return 'Python ' + text.replace('_', ' ')
-
-
-app.route('/number/<int:n>', strict_slashes=False)
-
-
+@app.route('/number/<int:n>', strict_slashes=False)
 def number(n):
-    """Prints <n>"""
+    """ Function that displays "n is a number"
+    only if n is an integer """
     return '{} is a number'.format(n)
 
 
